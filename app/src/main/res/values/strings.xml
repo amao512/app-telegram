@@ -2,4 +2,14 @@
     <string name="app_name">Telegram</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="drawer_menu_create_group">Создать группу</string>
+    <string name="drawer_menu_create_secret_chat">Создать секретный чат</string>
+    <string name="drawer_menu_create_channel">Создать канал</string>
+    <string name="drawer_menu_contacts">Контакты</string>
+    <string name="drawer_menu_calls">Звонки</string>
+    <string name="drawer_menu_favorites">Избранное</string>
+    <string name="drawer_menu_settings">Настройки</string>
+    <string name="drawer_menu_invate_friends">Пригласить друзей</string>
+    <string name="drawer_menu_help">Вопросы о телеграм</string>
 </resources>

@@ -45,16 +45,16 @@ class AppDrawer(val activity: AppCompatActivity, val mToolbar: Toolbar) {
                 .withSelectedItem(-1)
                 .withAccountHeader(mHeader)
                 .addDrawerItems(
-                        setPrimaryDrawerItem(100, "Создать группу", R.drawable.ic_menu_create_groups),
-                        setPrimaryDrawerItem(101, "Создать секретный чат", R.drawable.ic_menu_secret_chat),
-                        setPrimaryDrawerItem(102, "Создать канал", R.drawable.ic_menu_create_channel),
-                        setPrimaryDrawerItem(103, "Контакты", R.drawable.ic_menu_contacts),
-                        setPrimaryDrawerItem(104, "Звонки", R.drawable.ic_menu_phone),
-                        setPrimaryDrawerItem(105, "Избранное", R.drawable.ic_menu_favorites),
-                        setPrimaryDrawerItem(106, "Настройки", R.drawable.ic_menu_settings),
+                        setPrimaryDrawerItem(100, R.string.drawer_menu_create_group, R.drawable.ic_menu_create_groups),
+                        setPrimaryDrawerItem(101, R.string.drawer_menu_create_secret_chat, R.drawable.ic_menu_secret_chat),
+                        setPrimaryDrawerItem(102, R.string.drawer_menu_create_channel, R.drawable.ic_menu_create_channel),
+                        setPrimaryDrawerItem(103, R.string.drawer_menu_contacts, R.drawable.ic_menu_contacts),
+                        setPrimaryDrawerItem(104, R.string.drawer_menu_calls, R.drawable.ic_menu_phone),
+                        setPrimaryDrawerItem(105, R.string.drawer_menu_favorites, R.drawable.ic_menu_favorites),
+                        setPrimaryDrawerItem(106, R.string.drawer_menu_settings, R.drawable.ic_menu_settings),
                         DividerDrawerItem(),
-                        setPrimaryDrawerItem(107, "Пригласить друзей", R.drawable.ic_menu_invate),
-                        setPrimaryDrawerItem(108, "Вопросы о телеграм", R.drawable.ic_menu_help)
+                        setPrimaryDrawerItem(107, R.string.drawer_menu_invate_friends, R.drawable.ic_menu_invate),
+                        setPrimaryDrawerItem(108, R.string.drawer_menu_help, R.drawable.ic_menu_help)
                 ).withOnDrawerItemClickListener(object: Drawer.OnDrawerItemClickListener {
                     override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
                         Toast.makeText(activity, position.toString(), Toast.LENGTH_SHORT).show()
@@ -65,11 +65,11 @@ class AppDrawer(val activity: AppCompatActivity, val mToolbar: Toolbar) {
                 .build()
     }
 
-    private fun setPrimaryDrawerItem(id: Long, name: String, icon: Int): PrimaryDrawerItem {
+    private fun setPrimaryDrawerItem(id: Long, resourcesName: Int, icon: Int): PrimaryDrawerItem {
         return PrimaryDrawerItem()
                 .withIdentifier(id)
                 .withIconTintingEnabled(true)
-                .withName(name)
+                .withName(activity.getString(resourcesName))
                 .withSelectable(false)
                 .withIcon(icon)
     }

@@ -1,21 +1,21 @@
-package com.aslnstbk.telegram.ui
+package com.aslnstbk.telegram.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.aslnstbk.telegram.databinding.FragmentCreateGroupBinding
+import com.aslnstbk.telegram.databinding.FragmentInvateFriendsBinding
 
-class CreateGroupFragment : Fragment() {
+class InvateFriendsFragment : Fragment() {
 
-    private lateinit var mBinding: FragmentCreateGroupBinding
+    private lateinit var mBinding: FragmentInvateFriendsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mBinding = FragmentCreateGroupBinding.inflate(layoutInflater)
+        mBinding = FragmentInvateFriendsBinding.inflate(layoutInflater)
         return mBinding.root
     }
 

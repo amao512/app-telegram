@@ -1,4 +1,4 @@
-package com.aslnstbk.telegram.ui
+package com.aslnstbk.telegram.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

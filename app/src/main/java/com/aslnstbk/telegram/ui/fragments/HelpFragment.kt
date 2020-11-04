@@ -1,21 +1,21 @@
-package com.aslnstbk.telegram.ui
+package com.aslnstbk.telegram.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.aslnstbk.telegram.databinding.FragmentCallsBinding
+import com.aslnstbk.telegram.databinding.FragmentHelpBinding
 
-class CallsFragment : Fragment() {
+class HelpFragment : Fragment() {
 
-    private lateinit var mBinding: FragmentCallsBinding
+    private lateinit var mBinding: FragmentHelpBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mBinding = FragmentCallsBinding.inflate(layoutInflater)
+        mBinding = FragmentHelpBinding.inflate(layoutInflater)
         return mBinding.root
     }
 

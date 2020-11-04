@@ -12,4 +12,14 @@
     <string name="drawer_menu_settings">Настройки</string>
     <string name="drawer_menu_invate_friends">Пригласить друзей</string>
     <string name="drawer_menu_help">Вопросы о телеграм</string>
+
+    <string name="default_user_name">Asylzhan Seytbek</string>
+    <string name="default_user_phone">+77475762101</string>
+    <string name="user_online">В сети</string>
+    <string name="default_user_login">aslnstbk</string>
+    <string name="settings_user_login_change">Имя пользователя</string>
+    <string name="settings_user_phone_change_text">Телефон</string>
+    <string name="settings_user_bio_change_text">О себе</string>
+    <string name="settings_user_bio_text">dev</string>
+    <string name="settings_notify_text">Уведомления</string>
 </resources>

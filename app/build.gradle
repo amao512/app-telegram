@@ -50,4 +50,6 @@ dependencies {
     implementation "com.mikepenz:materialdrawer:7.0.0"
     // Add for NavController support
     implementation "com.mikepenz:materialdrawer-nav:7.0.0"
+
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }

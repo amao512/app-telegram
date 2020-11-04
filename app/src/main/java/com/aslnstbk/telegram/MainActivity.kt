@@ -35,6 +35,10 @@ class MainActivity : AppCompatActivity() {
         initFunc()
     }
 
+    private fun initFields() {
+        mToolbar = mBinding.mainToolbar
+    }
+
     private fun initFunc() {
         setSupportActionBar(mToolbar)
 
@@ -44,6 +48,17 @@ class MainActivity : AppCompatActivity() {
 
         createHeader()
         createDrawer()
+    }
+
+    private fun createHeader() {
+        mHeader = AccountHeaderBuilder()
+                .withActivity(this)
+                .withHeaderBackground(R.drawable.drawer_menu_header)
+                .addProfiles(
+                        ProfileDrawerItem()
+                                .withName("Asylzhan Seytbek")
+                                .withEmail("+77475762101")
+                ).build()
     }
 
     private fun createDrawer() {
@@ -67,31 +82,11 @@ class MainActivity : AppCompatActivity() {
                 ).withOnDrawerItemClickListener(object: Drawer.OnDrawerItemClickListener {
                     override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
                         Toast.makeText(applicationContext, position.toString(), Toast.LENGTH_SHORT).show()
-
-                        when(position){
-                            1 -> checkoutFragment(CreateGroupFragment())
-                            2 -> checkoutFragment(CreateSecretChatFragment())
-                            3 -> checkoutFragment(CreateChannelFragment())
-                            4 -> checkoutFragment(ContactsFragment())
-                            5 -> checkoutFragment(CallsFragment())
-                            6 -> checkoutFragment(FavoritesFragment())
-                            7 -> checkoutFragment(SettingsFragment())
-                            8 -> checkoutFragment(InvateFriendsFragment())
-                            9 -> checkoutFragment(HelpFragment())
-                        }
-
+                        replaceFragment(position)
                         return false
                     }
                 })
                 .build()
-    }
-
-    private fun checkoutFragment(Fragment: Fragment){
-
-        supportFragmentManager.beginTransaction()
-            .addToBackStack(null)
-            .replace(R.id.dataContainer, Fragment)
-            .commit()
     }
 
     private fun setPrimaryDrawerItem(id: Long, name: String, icon: Int): PrimaryDrawerItem {
@@ -103,19 +98,24 @@ class MainActivity : AppCompatActivity() {
                 .withIcon(icon)
     }
 
-    private fun createHeader() {
-        mHeader = AccountHeaderBuilder()
-                .withActivity(this)
-                .withHeaderBackground(R.drawable.drawer_menu_header)
-                .addProfiles(
-                        ProfileDrawerItem()
-                                .withName("Asylzhan Seytbek")
-                                .withEmail("+77475762101")
-                ).build()
-
+    private fun replaceFragment(position: Int){
+        when(position){
+            1 -> checkoutFragment(CreateGroupFragment())
+            2 -> checkoutFragment(CreateSecretChatFragment())
+            3 -> checkoutFragment(CreateChannelFragment())
+            4 -> checkoutFragment(ContactsFragment())
+            5 -> checkoutFragment(CallsFragment())
+            6 -> checkoutFragment(FavoritesFragment())
+            7 -> checkoutFragment(SettingsFragment())
+            8 -> checkoutFragment(InvateFriendsFragment())
+            9 -> checkoutFragment(HelpFragment())
+        }
     }
 
-    private fun initFields() {
-        mToolbar = mBinding.mainToolbar
+    private fun checkoutFragment(Fragment: Fragment){
+        supportFragmentManager.beginTransaction()
+            .addToBackStack(null)
+            .replace(R.id.dataContainer, Fragment)
+            .commit()
     }
 }

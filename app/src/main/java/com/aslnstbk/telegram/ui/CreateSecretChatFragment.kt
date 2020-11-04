@@ -5,10 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.aslnstbk.telegram.R
-import com.aslnstbk.telegram.databinding.FragmentCreateGroupBinding
 import com.aslnstbk.telegram.databinding.FragmentCreateSecretChatBinding
-import com.aslnstbk.telegram.databinding.FragmentSettingsBinding
 
 class CreateSecretChatFragment : Fragment() {
 

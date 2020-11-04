@@ -1,23 +1,8 @@
 package com.aslnstbk.telegram.ui.fragments
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import com.aslnstbk.telegram.databinding.FragmentInvateFriendsBinding
+import com.aslnstbk.telegram.R
 
-class InvateFriendsFragment : Fragment() {
-
-    private lateinit var mBinding: FragmentInvateFriendsBinding
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        mBinding = FragmentInvateFriendsBinding.inflate(layoutInflater)
-        return mBinding.root
-    }
+class InvateFriendsFragment : BaseFragment(R.layout.fragment_invate_friends) {
 
     override fun onResume() {
         super.onResume()

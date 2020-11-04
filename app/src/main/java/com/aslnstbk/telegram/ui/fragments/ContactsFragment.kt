@@ -1,23 +1,8 @@
 package com.aslnstbk.telegram.ui.fragments
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import com.aslnstbk.telegram.databinding.FragmentContactsBinding
+import com.aslnstbk.telegram.R
 
-class ContactsFragment : Fragment() {
-
-    private lateinit var mBinding: FragmentContactsBinding
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        mBinding = FragmentContactsBinding.inflate(layoutInflater)
-        return mBinding.root
-    }
+class ContactsFragment : BaseFragment(R.layout.fragment_contacts) {
 
     override fun onResume() {
         super.onResume()

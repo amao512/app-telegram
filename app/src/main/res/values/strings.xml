@@ -3,6 +3,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- Drawer menu -->
     <string name="drawer_menu_create_group">Создать группу</string>
     <string name="drawer_menu_create_secret_chat">Создать секретный чат</string>
     <string name="drawer_menu_create_channel">Создать канал</string>
@@ -17,6 +18,8 @@
     <string name="default_user_phone">+77475762101</string>
     <string name="user_online">В сети</string>
     <string name="default_user_login">aslnstbk</string>
+
+    <!-- Settings -->
     <string name="settings_user_login_change">Имя пользователя</string>
     <string name="settings_user_phone_change_text">Телефон</string>
     <string name="settings_user_bio_change_text">О себе</string>
@@ -27,4 +30,8 @@
     <string name="settings_themes_text">Темы и чаты</string>
     <string name="settings_action_menu_edit">Изменить</string>
     <string name="settings_action_menu_exit">Выход</string>
+
+    <string name="register_toolbar_title">Ваш телефон</string>
+    <string name="register_phone_number_text">Введите номер</string>
+    <string name="register_enter_code_sent_code">Введите код</string>
 </resources>

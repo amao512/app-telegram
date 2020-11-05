@@ -22,4 +22,9 @@
     <string name="settings_user_bio_change_text">О себе</string>
     <string name="settings_user_bio_text">dev</string>
     <string name="settings_notify_text">Уведомления</string>
+    <string name="settings_data_text">Данные и память</string>
+    <string name="settings_privacy_text">Конфиденциальность</string>
+    <string name="settings_themes_text">Темы и чаты</string>
+    <string name="settings_action_menu_edit">Изменить</string>
+    <string name="settings_action_menu_exit">Выход</string>
 </resources>

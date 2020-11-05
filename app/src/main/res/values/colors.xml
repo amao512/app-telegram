@@ -5,7 +5,8 @@
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="grey">#d3d3d3</color>
+    <color name="grey">#837E7E</color>
+    <color name="greyLight">#F4F2F2</color>
 
     <!-- OVERWRITE THESE COLORS FOR A LIGHT THEME -->
     <!-- MaterialDrawer DEFAULT colors -->

@@ -185,149 +185,55 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <include
         android:id="@+id/settings_item_notify"
-        android:layout_width="match_parent"
+        layout="@layout/settings_item_view"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        style="@style/settings_item_large"
         android:layout_marginTop="@dimen/vertical_small_margin"
         app:layout_constraintTop_toBottomOf="@+id/settings_item_user_bio"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
-        <ImageView
-            android:id="@+id/settings_notify_icon"
-            style="@style/settings_item_icon"
-            android:src="@drawable/ic_notify"
-            app:layout_constraintTop_toTopOf="@id/settings_item_notify"
-            app:layout_constraintStart_toStartOf="@id/settings_item_notify"
-            />
-
-        <TextView
-            android:id="@+id/settings_notify_text"
-            style="@style/settings_item_name_text"
-            android:text="@string/settings_notify_text"
-            app:layout_constraintTop_toTopOf="@id/settings_notify_icon"
-            app:layout_constraintBottom_toBottomOf="@id/settings_notify_icon"
-            app:layout_constraintStart_toEndOf="@id/settings_notify_icon"
-            />
-
-        <View
-            style="@style/settings_item_divider"
-            app:layout_constraintTop_toBottomOf="@+id/settings_notify_text"
-            app:layout_constraintStart_toStartOf="@+id/settings_notify_text"
-            app:layout_constraintBottom_toBottomOf="@+id/settings_item_notify"
-            app:layout_constraintEnd_toEndOf="@+id/settings_item_notify"
-            />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <include
         android:id="@+id/settings_item_data"
-        android:layout_width="match_parent"
+        layout="@layout/settings_item_view"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        style="@style/settings_item_large"
         app:layout_constraintTop_toBottomOf="@+id/settings_item_notify"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
-        <ImageView
-            android:id="@+id/settings_data_icon"
-            style="@style/settings_item_icon"
-            android:src="@drawable/ic_data_usage"
-            app:layout_constraintTop_toTopOf="@id/settings_item_data"
-            app:layout_constraintStart_toStartOf="@id/settings_item_data"
-            />
-
-        <TextView
-            android:id="@+id/settings_data_text"
-            style="@style/settings_item_name_text"
-            android:text="@string/settings_data_text"
-            app:layout_constraintTop_toTopOf="@id/settings_data_icon"
-            app:layout_constraintBottom_toBottomOf="@id/settings_data_icon"
-            app:layout_constraintStart_toEndOf="@id/settings_data_icon"
-            />
-
-        <View
-            style="@style/settings_item_divider"
-            app:layout_constraintTop_toBottomOf="@+id/settings_data_text"
-            app:layout_constraintStart_toStartOf="@+id/settings_data_text"
-            app:layout_constraintBottom_toBottomOf="@+id/settings_item_data"
-            app:layout_constraintEnd_toEndOf="@+id/settings_item_data"
-            />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <include
         android:id="@+id/settings_item_privacy"
-        android:layout_width="match_parent"
+        layout="@layout/settings_item_view"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        style="@style/settings_item_large"
         app:layout_constraintTop_toBottomOf="@+id/settings_item_data"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
-        <ImageView
-            android:id="@+id/settings_privacy_icon"
-            style="@style/settings_item_icon"
-            android:src="@drawable/ic_privacy"
-            app:layout_constraintTop_toTopOf="@id/settings_item_privacy"
-            app:layout_constraintStart_toStartOf="@id/settings_item_privacy"
-            />
-
-        <TextView
-            android:id="@+id/settings_privacy_text"
-            style="@style/settings_item_name_text"
-            android:text="@string/settings_privacy_text"
-            app:layout_constraintTop_toTopOf="@id/settings_privacy_icon"
-            app:layout_constraintBottom_toBottomOf="@id/settings_privacy_icon"
-            app:layout_constraintStart_toEndOf="@id/settings_privacy_icon"
-            />
-
-        <View
-            style="@style/settings_item_divider"
-            app:layout_constraintTop_toBottomOf="@+id/settings_privacy_text"
-            app:layout_constraintStart_toStartOf="@+id/settings_privacy_text"
-            app:layout_constraintBottom_toBottomOf="@+id/settings_item_privacy"
-            app:layout_constraintEnd_toEndOf="@+id/settings_item_privacy"
-            />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <include
         android:id="@+id/settings_item_themes"
-        android:layout_width="match_parent"
+        layout="@layout/settings_item_view"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        style="@style/settings_item_large"
         app:layout_constraintTop_toBottomOf="@+id/settings_item_privacy"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
-        <ImageView
-            android:id="@+id/settings_themes_icon"
-            style="@style/settings_item_icon"
-            android:src="@drawable/ic_theme"
-            app:layout_constraintTop_toTopOf="@id/settings_item_themes"
-            app:layout_constraintStart_toStartOf="@id/settings_item_themes"
-            />
-
-        <TextView
-            android:id="@+id/settings_themes_text"
-            style="@style/settings_item_name_text"
-            android:text="@string/settings_themes_text"
-            app:layout_constraintTop_toTopOf="@id/settings_themes_icon"
-            app:layout_constraintBottom_toBottomOf="@id/settings_themes_icon"
-            app:layout_constraintStart_toEndOf="@id/settings_themes_icon"
-            />
-
-        <View
-            style="@style/settings_item_divider"
-            app:layout_constraintTop_toBottomOf="@+id/settings_themes_text"
-            app:layout_constraintStart_toStartOf="@+id/settings_themes_text"
-            app:layout_constraintBottom_toBottomOf="@+id/settings_item_themes"
-            app:layout_constraintEnd_toEndOf="@+id/settings_item_themes"
-            />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <include
+        android:id="@+id/settings_item_view_example"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        layout="@layout/settings_item_view"
+        app:layout_constraintTop_toBottomOf="@id/settings_item_themes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

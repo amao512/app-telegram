@@ -1,10 +1,11 @@
 package com.aslnstbk.telegram.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.aslnstbk.telegram.R
 import com.aslnstbk.telegram.databinding.ActivityRegisterBinding
+import com.aslnstbk.telegram.replaceFragment
 import com.aslnstbk.telegram.ui.fragments.RegisterEnterPhoneFragment
 
 class RegisterActivity : AppCompatActivity() {
@@ -28,9 +29,7 @@ class RegisterActivity : AppCompatActivity() {
         mToolbar = mBinding.registerToolbar
         title = getString(R.string.register_toolbar_title)
 
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.registerContainer, RegisterEnterPhoneFragment())
-            .commit()
+        replaceFragment(RegisterEnterPhoneFragment())
     }
 
     private fun initFunc(){

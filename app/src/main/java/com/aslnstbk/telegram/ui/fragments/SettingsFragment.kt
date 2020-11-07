@@ -1,6 +1,5 @@
 package com.aslnstbk.telegram.ui.fragments
 
-import android.media.Image
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem

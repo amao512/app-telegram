@@ -1,6 +1,5 @@
 package com.aslnstbk.telegram
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.aslnstbk.telegram.activities.RegisterActivity
@@ -32,17 +31,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFunc() {
-        if(false){
+        if(true){
             setSupportActionBar(mToolbar)
-
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.dataContainer, ChatsFragment())
-                .commit()
-
+            replaceFragment(ChatsFragment())
             mAppDrawer.create()
         } else {
-            startActivity(Intent(this, RegisterActivity::class.java))
-            finish()
+            replaceActivity(RegisterActivity())
         }
     }
 }

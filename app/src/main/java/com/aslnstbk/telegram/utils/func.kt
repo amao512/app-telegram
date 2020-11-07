@@ -1,8 +1,9 @@
-package com.aslnstbk.telegram
+package com.aslnstbk.telegram.utils
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.aslnstbk.telegram.R
 
 fun AppCompatActivity.replaceActivity(activity: AppCompatActivity){
     startActivity(Intent(this, activity::class.java))

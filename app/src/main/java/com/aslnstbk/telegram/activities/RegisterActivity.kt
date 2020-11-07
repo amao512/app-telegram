@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.aslnstbk.telegram.R
 import com.aslnstbk.telegram.databinding.ActivityRegisterBinding
-import com.aslnstbk.telegram.replaceFragment
+import com.aslnstbk.telegram.utils.replaceFragment
 import com.aslnstbk.telegram.ui.fragments.RegisterEnterPhoneFragment
 
 class RegisterActivity : AppCompatActivity() {

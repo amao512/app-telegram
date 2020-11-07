@@ -7,7 +7,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.aslnstbk.telegram.MainActivity
 import com.aslnstbk.telegram.R
+import com.aslnstbk.telegram.activities.RegisterActivity
+import com.aslnstbk.telegram.utils.AUTH
+import com.aslnstbk.telegram.utils.replaceActivity
 
 class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
 
@@ -46,7 +50,10 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
 
         when(item.itemId){
             R.id.settings_action_menu_edit -> Toast.makeText(activity, "Edit", Toast.LENGTH_SHORT).show()
-            R.id.settings_action_menu_exit -> Toast.makeText(activity, "Exit", Toast.LENGTH_SHORT).show()
+            R.id.settings_action_menu_exit -> {
+                AUTH.signOut()
+                (activity as MainActivity).replaceActivity(RegisterActivity())
+            }
         }
 
         return super.onOptionsItemSelected(item)

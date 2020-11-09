@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.aslnstbk.telegram.R
 import com.aslnstbk.telegram.ui.fragments.*
@@ -19,11 +20,31 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 class AppDrawer(val activity: AppCompatActivity, val mToolbar: Toolbar) {
 
     private lateinit var mDrawer: Drawer
+    private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var mHeader: AccountHeader
 
     fun create(){
         createHeader()
         createDrawer()
+        mDrawerLayout = mDrawer.drawerLayout
+    }
+
+    fun disableDrawer(){
+        mDrawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = false
+        activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        mToolbar.setNavigationOnClickListener {
+            activity.supportFragmentManager.popBackStack()
+        }
+    }
+
+    fun enableDrawer(){
+        activity.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        mDrawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = true
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+        mToolbar.setNavigationOnClickListener {
+            mDrawer.openDrawer()
+        }
     }
 
     private fun createHeader() {

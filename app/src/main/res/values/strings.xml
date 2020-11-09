@@ -34,4 +34,6 @@
     <string name="register_toolbar_title">Ваш телефон</string>
     <string name="register_phone_number_text">Введите номер</string>
     <string name="register_enter_code_sent_code">Введите код</string>
+    <string name="edit_text_hint_phone_number">+7 (---) --- ----</string>
+    <string name="edit_text_hint_enter_code">- - - - - -</string>
 </resources>

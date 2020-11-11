@@ -2,6 +2,7 @@ package com.aslnstbk.telegram.ui.fragments
 
 import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.aslnstbk.telegram.MainActivity
 import com.aslnstbk.telegram.R
 import com.aslnstbk.telegram.activities.RegisterActivity
@@ -14,7 +15,7 @@ import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import java.util.concurrent.TimeUnit
 
-class RegisterEnterPhoneFragment : BaseFragment(R.layout.fragment_register_enter_phone) {
+class RegisterEnterPhoneFragment : Fragment(R.layout.fragment_register_enter_phone) {
 
     private var phoneEditText: EditText? = null
     private var nextBtn: FloatingActionButton? = null

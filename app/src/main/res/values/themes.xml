@@ -78,4 +78,13 @@
         <item name="android:layout_height">?attr/actionBarSize</item>
         <item name="android:background">@color/primary</item>
     </style>
+
+    <style name="editTextDefaultTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_edit_text_selector</item>
+        <item name="android:textColorHint">@color/grey</item>
+        <item name="android:padding">@dimen/vertical_medium_margin</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>

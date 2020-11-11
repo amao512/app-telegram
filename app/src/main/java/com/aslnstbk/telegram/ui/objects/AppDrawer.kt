@@ -8,6 +8,8 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.aslnstbk.telegram.R
 import com.aslnstbk.telegram.ui.fragments.*
+import com.aslnstbk.telegram.utils.USER
+import com.aslnstbk.telegram.utils.initFirebase
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.Drawer
@@ -24,6 +26,7 @@ class AppDrawer(val activity: AppCompatActivity, val mToolbar: Toolbar) {
     private lateinit var mHeader: AccountHeader
 
     fun create(){
+        initFirebase()
         createHeader()
         createDrawer()
         mDrawerLayout = mDrawer.drawerLayout
@@ -53,8 +56,8 @@ class AppDrawer(val activity: AppCompatActivity, val mToolbar: Toolbar) {
                 .withHeaderBackground(R.drawable.drawer_menu_header)
                 .addProfiles(
                         ProfileDrawerItem()
-                            .withName(activity.getString(R.string.default_user_name))
-                            .withEmail(activity.getString(R.string.default_user_phone))
+                            .withName(USER.fullname)
+                            .withEmail(USER.phone)
                 ).build()
     }
 

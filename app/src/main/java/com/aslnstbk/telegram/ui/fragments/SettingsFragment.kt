@@ -5,19 +5,23 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.aslnstbk.telegram.MainActivity
 import com.aslnstbk.telegram.R
 import com.aslnstbk.telegram.activities.RegisterActivity
-import com.aslnstbk.telegram.utils.AUTH
-import com.aslnstbk.telegram.utils.replaceActivity
+import com.aslnstbk.telegram.utils.*
 
 class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
+
+    private lateinit var fullNameTextView: TextView
+    private lateinit var usernameTextView: TextView
+    private lateinit var phoneNumberTextView: TextView
+    private lateinit var bioTextView: TextView
 
     override fun onStart() {
         super.onStart()
         setSettingsItemViews()
+        initFirebase()
     }
 
     override fun onResume() {
@@ -33,6 +37,16 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
     }
 
     private fun initViews(layoutId: Int, iconRes: Int, title: Int){
+        fullNameTextView = (activity as MainActivity).findViewById(R.id.settings_fullname)
+        usernameTextView = (activity as MainActivity).findViewById(R.id.settings_user_login_text)
+        phoneNumberTextView = (activity as MainActivity).findViewById(R.id.settings_user_phone_text)
+        bioTextView = (activity as MainActivity).findViewById(R.id.settings_user_bio_text)
+
+        fullNameTextView.text = USER.fullname
+        usernameTextView.text = USER.username
+        phoneNumberTextView.text = USER.phone
+        bioTextView.text = USER.bio
+
         val item: ConstraintLayout? = activity?.findViewById(layoutId)
         val icon: ImageView? = item?.findViewById(R.id.settings_item_icon)
         val text: TextView? = item?.findViewById(R.id.settings_item_text)
@@ -49,7 +63,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when(item.itemId){
-            R.id.settings_action_menu_edit -> Toast.makeText(activity, "Edit", Toast.LENGTH_SHORT).show()
+            R.id.settings_action_menu_edit -> (activity as MainActivity).replaceFragment(SettingsChangeFragment())
             R.id.settings_action_menu_exit -> {
                 AUTH.signOut()
                 (activity as MainActivity).replaceActivity(RegisterActivity())

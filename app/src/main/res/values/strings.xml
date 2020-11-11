@@ -36,4 +36,6 @@
     <string name="register_enter_code_sent_code">Введите код</string>
     <string name="edit_text_hint_phone_number">+7 (---) --- ----</string>
     <string name="edit_text_hint_enter_code">- - - - - -</string>
+    <string name="fragment_settings_change_name">Имя</string>
+    <string name="fragment_settings_change_surname">Фамилия</string>
 </resources>

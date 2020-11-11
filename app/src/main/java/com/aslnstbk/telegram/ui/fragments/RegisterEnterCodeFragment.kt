@@ -3,6 +3,7 @@ package com.aslnstbk.telegram.ui.fragments
 import android.text.Editable
 import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.aslnstbk.telegram.MainActivity
 import com.aslnstbk.telegram.R
 import com.aslnstbk.telegram.activities.RegisterActivity
@@ -10,7 +11,7 @@ import com.aslnstbk.telegram.ui.objects.AbstractTextWatcher
 import com.aslnstbk.telegram.utils.*
 import com.google.firebase.auth.PhoneAuthProvider
 
-class RegisterEnterCodeFragment(val phoneNumber: String, val id: String) : BaseFragment(R.layout.fragment_register_enter_code) {
+class RegisterEnterCodeFragment(val phoneNumber: String, val id: String) : Fragment(R.layout.fragment_register_enter_code) {
 
     private var inputCode: EditText? = null
 

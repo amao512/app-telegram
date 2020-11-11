@@ -4,13 +4,15 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.aslnstbk.telegram.activities.RegisterActivity
 import com.aslnstbk.telegram.databinding.ActivityMainBinding
+import com.aslnstbk.telegram.models.User
 import com.aslnstbk.telegram.ui.fragments.ChatsFragment
 import com.aslnstbk.telegram.ui.objects.AppDrawer
-import com.aslnstbk.telegram.utils.AUTH
-import com.aslnstbk.telegram.utils.initFirebase
-import com.aslnstbk.telegram.utils.replaceActivity
-import com.aslnstbk.telegram.utils.replaceFragment
+import com.aslnstbk.telegram.ui.objects.AppValueEventListener
+import com.aslnstbk.telegram.utils.*
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,13 +36,24 @@ class MainActivity : AppCompatActivity() {
         mToolbar = mBinding.mainToolbar
         mAppDrawer = AppDrawer(this, mToolbar)
         initFirebase()
+        initUser()
+    }
+
+    private fun initUser() {
+        REF_DATABASE_ROOT.child(NODE_USERS).child(UID)
+                .addListenerForSingleValueEvent(object : AppValueEventListener() {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        super.onDataChange(snapshot)
+                        USER = snapshot.getValue(User::class.java) ?: User()
+                    }
+                })
     }
 
     private fun initFunc() {
         if(AUTH.currentUser != null){
             setSupportActionBar(mToolbar)
-            replaceFragment(ChatsFragment())
             mAppDrawer.create()
+            replaceFragment(ChatsFragment())
         } else {
             replaceActivity(RegisterActivity())
         }

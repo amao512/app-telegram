@@ -7,6 +7,7 @@ import com.aslnstbk.telegram.R
 import com.aslnstbk.telegram.databinding.ActivityRegisterBinding
 import com.aslnstbk.telegram.utils.replaceFragment
 import com.aslnstbk.telegram.ui.fragments.RegisterEnterPhoneFragment
+import com.aslnstbk.telegram.utils.initFirebase
 
 class RegisterActivity : AppCompatActivity() {
 

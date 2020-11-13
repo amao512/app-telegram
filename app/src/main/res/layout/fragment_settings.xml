@@ -57,10 +57,10 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/settings_item_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/settings_item_large"
-        android:id="@+id/settings_item_user_login"
         app:layout_constraintTop_toBottomOf="@+id/settings_header"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -69,15 +69,15 @@
             android:id="@+id/settings_user_login_icon"
             style="@style/settings_item_icon"
             android:src="@drawable/ic_email"
-            app:layout_constraintTop_toTopOf="@id/settings_item_user_login"
-            app:layout_constraintStart_toStartOf="@id/settings_item_user_login"
+            app:layout_constraintTop_toTopOf="@id/settings_item_username"
+            app:layout_constraintStart_toStartOf="@id/settings_item_username"
             />
 
         <TextView
             android:id="@+id/settings_user_login_text"
             style="@style/settings_item_name_text"
             android:text="@string/default_user_login"
-            app:layout_constraintTop_toTopOf="@id/settings_item_user_login"
+            app:layout_constraintTop_toTopOf="@id/settings_item_username"
             app:layout_constraintStart_toEndOf="@id/settings_user_login_icon"
             />
 
@@ -93,8 +93,8 @@
             style="@style/settings_item_divider"
             app:layout_constraintTop_toBottomOf="@+id/settings_user_login_change_text"
             app:layout_constraintStart_toStartOf="@+id/settings_user_login_change_text"
-            app:layout_constraintBottom_toBottomOf="@+id/settings_item_user_login"
-            app:layout_constraintEnd_toEndOf="@+id/settings_item_user_login"
+            app:layout_constraintBottom_toBottomOf="@+id/settings_item_username"
+            app:layout_constraintEnd_toEndOf="@+id/settings_item_username"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -104,7 +104,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/settings_item_large"
-        app:layout_constraintTop_toBottomOf="@+id/settings_item_user_login"
+        app:layout_constraintTop_toBottomOf="@+id/settings_item_username"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 

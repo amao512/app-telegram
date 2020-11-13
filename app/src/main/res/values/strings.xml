@@ -38,4 +38,6 @@
     <string name="edit_text_hint_enter_code">- - - - - -</string>
     <string name="fragment_settings_change_name">Имя</string>
     <string name="fragment_settings_change_surname">Фамилия</string>
+    <string name="edit_text_hint_username">Username</string>
+    <string name="edit_text_hint_bio">Bio</string>
 </resources>

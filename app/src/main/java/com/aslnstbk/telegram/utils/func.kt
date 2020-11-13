@@ -1,6 +1,7 @@
 package com.aslnstbk.telegram.utils
 
 import android.content.Intent
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.aslnstbk.telegram.R
@@ -27,4 +28,8 @@ fun Fragment.replaceFragment(fragment: Fragment){
             ?.addToBackStack(null)
             ?.replace(R.id.dataContainer, fragment)
             ?.commit()
+}
+
+fun Fragment.showToast(text: String){
+    Toast.makeText(this.context, text, Toast.LENGTH_SHORT).show()
 }

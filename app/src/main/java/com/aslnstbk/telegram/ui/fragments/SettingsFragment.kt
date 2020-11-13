@@ -18,6 +18,9 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
     private lateinit var phoneNumberTextView: TextView
     private lateinit var bioTextView: TextView
 
+    private lateinit var usernameItem: ConstraintLayout
+    private lateinit var bioItem: ConstraintLayout
+
     override fun onStart() {
         super.onStart()
         setSettingsItemViews()
@@ -42,10 +45,10 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         phoneNumberTextView = (activity as MainActivity).findViewById(R.id.settings_user_phone_text)
         bioTextView = (activity as MainActivity).findViewById(R.id.settings_user_bio_text)
 
-        fullNameTextView.text = USER.fullname
-        usernameTextView.text = USER.username
-        phoneNumberTextView.text = USER.phone
-        bioTextView.text = USER.bio
+        usernameItem = (activity as MainActivity).findViewById(R.id.settings_item_username)
+        bioItem = (activity as MainActivity).findViewById(R.id.settings_item_user_bio)
+
+        fillFields()
 
         val item: ConstraintLayout? = activity?.findViewById(layoutId)
         val icon: ImageView? = item?.findViewById(R.id.settings_item_icon)
@@ -53,6 +56,24 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
 
         icon?.setImageResource(iconRes)
         text?.text = getString(title)
+
+        usernameItem.setOnClickListener {
+            replaceFragment(ChangeUsernameFragment())
+        }
+
+        bioItem.setOnClickListener {
+            replaceFragment(ChangeBioFragment())
+        }
+    }
+
+    private fun fillFields(){
+
+        when {
+            USER.fullname.isNotEmpty() -> fullNameTextView.text = USER.fullname
+            USER.username.isNotEmpty() -> usernameTextView.text = USER.username
+            USER.phone.isNotEmpty() -> phoneNumberTextView.text = USER.phone
+            USER.bio.isNotEmpty() -> bioTextView.text = USER.bio
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -63,7 +84,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when(item.itemId){
-            R.id.settings_action_menu_edit -> (activity as MainActivity).replaceFragment(SettingsChangeFragment())
+            R.id.settings_action_menu_edit -> (activity as MainActivity).replaceFragment(ChangeNameFragment())
             R.id.settings_action_menu_exit -> {
                 AUTH.signOut()
                 (activity as MainActivity).replaceActivity(RegisterActivity())

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="@dimen/horizontal_margin"
+    >
+
+    <EditText
+        android:id="@+id/fragment_change_username_edit_text"
+        style="@style/editTextDefaultTheme"
+        android:layout_marginTop="@dimen/vertical_medium_margin"
+        android:hint="@string/edit_text_hint_username"
+        />
+
+</LinearLayout>

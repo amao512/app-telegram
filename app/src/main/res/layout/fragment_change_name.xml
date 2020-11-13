@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.SettingsChangeFragment"
+    tools:context=".ui.fragments.ChangeNameFragment"
     android:layout_marginHorizontal="@dimen/horizontal_margin"
     android:orientation="vertical">
 
@@ -11,13 +11,6 @@
         android:id="@+id/fragment_settings_change_name"
         style="@style/editTextDefaultTheme"
         android:hint="@string/fragment_settings_change_name"
-        android:layout_marginTop="@dimen/vertical_medium_margin"
-        />
-
-    <EditText
-        android:id="@+id/fragment_settings_change_surname"
-        style="@style/editTextDefaultTheme"
-        android:hint="@string/fragment_settings_change_surname"
         android:layout_marginTop="@dimen/vertical_medium_margin"
         />
 

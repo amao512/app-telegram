@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import com.aslnstbk.telegram.MainActivity
 import com.aslnstbk.telegram.R
 import com.aslnstbk.telegram.activities.RegisterActivity
-import com.aslnstbk.telegram.ui.objects.AbstractTextWatcher
+import com.aslnstbk.telegram.utils.AbstractTextWatcher
 import com.aslnstbk.telegram.utils.*
 import com.google.firebase.auth.PhoneAuthProvider
 

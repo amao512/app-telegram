@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import com.aslnstbk.telegram.R
 import com.aslnstbk.telegram.ui.fragments.*
 import com.aslnstbk.telegram.utils.USER
-import com.aslnstbk.telegram.utils.initFirebase
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.Drawer
@@ -19,14 +18,13 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 
-class AppDrawer(val activity: AppCompatActivity, val mToolbar: Toolbar) {
+class AppDrawer(val activity: AppCompatActivity, private val mToolbar: Toolbar) {
 
     private lateinit var mDrawer: Drawer
     private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var mHeader: AccountHeader
 
     fun create(){
-        initFirebase()
         createHeader()
         createDrawer()
         mDrawerLayout = mDrawer.drawerLayout

@@ -46,7 +46,19 @@ class MainActivity : AppCompatActivity() {
 
             path.putFile(uri).addOnCompleteListener {
                 if(it.isSuccessful){
-                    showToast("Photo uploaded")
+                    path.downloadUrl.addOnCompleteListener {task1 ->
+                        if(task1.isSuccessful){
+                            val photoUrl = task1.result.toString()
+
+                            REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_PHOTO_URL)
+                                .setValue(photoUrl).addOnCompleteListener { task2 ->
+                                    if(task2.isSuccessful){
+                                        showToast("Photo uploaded")
+                                        USER.photoUrl = photoUrl
+                                    }
+                                }
+                        }
+                    }
                 }
             }
         }

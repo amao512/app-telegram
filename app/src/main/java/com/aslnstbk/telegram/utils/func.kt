@@ -30,6 +30,6 @@ fun Fragment.replaceFragment(fragment: Fragment){
             ?.commit()
 }
 
-fun Fragment.showToast(text: String){
-    Toast.makeText(this.context, text, Toast.LENGTH_SHORT).show()
+fun showToast(text: String){
+    Toast.makeText(APP_ACTIVITY, text, Toast.LENGTH_SHORT).show()
 }

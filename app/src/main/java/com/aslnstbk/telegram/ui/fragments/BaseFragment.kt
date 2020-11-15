@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.aslnstbk.telegram.MainActivity
+import com.aslnstbk.telegram.utils.APP_ACTIVITY
 
 open class BaseFragment(val layout: Int) : Fragment() {
 
@@ -21,11 +21,11 @@ open class BaseFragment(val layout: Int) : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        (activity as MainActivity).mAppDrawer.disableDrawer()
+        APP_ACTIVITY.mAppDrawer.disableDrawer()
     }
 
     override fun onStop() {
         super.onStop()
-        (activity as MainActivity).mAppDrawer.enableDrawer()
+        APP_ACTIVITY.mAppDrawer.enableDrawer()
     }
 }

@@ -6,7 +6,7 @@ import com.aslnstbk.telegram.utils.*
 
 class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_username) {
 
-    private var usernameEditText: EditText? = null
+    private lateinit var usernameEditText: EditText
 
     override fun onResume() {
         super.onResume()
@@ -14,14 +14,14 @@ class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_usern
     }
 
     private fun initViews() {
-        usernameEditText = activity?.findViewById(R.id.fragment_change_username_edit_text)
-        usernameEditText?.setText(USER.username)
+        usernameEditText = APP_ACTIVITY.findViewById(R.id.fragment_change_username_edit_text)
+        usernameEditText.setText(USER.username)
     }
 
     override fun change() {
         super.change()
 
-        val username = usernameEditText?.text.toString()
+        val username = usernameEditText.text.toString()
 
         if(username.isEmpty()){
             showToast("Input is empty!")
@@ -44,7 +44,7 @@ class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_usern
     }
 
     private fun setUsername(username: String) {
-        REF_DATABASE_ROOT.child(NODE_USERNAMES).child(username).setValue(UID)
+        REF_DATABASE_ROOT.child(NODE_USERNAMES).child(username).setValue(CURRENT_UID)
             .addOnCompleteListener {
                 if(it.isSuccessful){
                     updateCurrentUsername(username)
@@ -56,7 +56,7 @@ class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_usern
     }
 
     private fun updateCurrentUsername(username: String) {
-        REF_DATABASE_ROOT.child(NODE_USERS).child(UID).child(CHILD_USERNAME).setValue(username)
+        REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_USERNAME).setValue(username)
             .addOnCompleteListener {
                 if(it.isSuccessful){
                     deleteOldUsername(username)

@@ -4,184 +4,169 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.SettingsFragment"
-    android:background="@color/greyLight">
+    android:background="@color/greyLight"
+    tools:context=".ui.fragments.SettingsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/settings_header"
         android:layout_width="match_parent"
         android:layout_height="@dimen/settings_header_height"
+        android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/primary">
+        app:layout_constraintTop_toTopOf="parent">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/settings_profile_image"
             android:layout_width="@dimen/settings_profile_image_width"
             android:layout_height="@dimen/setting_profile_image_height"
-            android:src="@drawable/ic_default_user_photo"
-            app:civ_circle_background_color="@color/white"
             android:layout_marginStart="@dimen/horizontal_margin"
             android:layout_marginTop="@dimen/vertical_medium_margin"
+            android:src="@drawable/ic_default_user_photo"
+            app:civ_circle_background_color="@color/white"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/settings_fullname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/horizontal_margin"
+            android:layout_marginTop="@dimen/vertical_small_margin"
             android:text="@string/default_user_name"
-            app:layout_constraintStart_toEndOf="@+id/settings_profile_image"
-            app:layout_constraintTop_toTopOf="@+id/settings_profile_image"
             android:textColor="@color/white"
             android:textSize="@dimen/text_large"
-            android:layout_marginStart="@dimen/horizontal_margin"
             app:layout_constraintBottom_toTopOf="@+id/settings_user_online_status"
-            android:layout_marginTop="@dimen/vertical_small_margin"
-            />
+            app:layout_constraintStart_toEndOf="@+id/settings_profile_image"
+            app:layout_constraintTop_toTopOf="@+id/settings_profile_image" />
 
         <TextView
             android:id="@+id/settings_user_online_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/horizontal_margin"
             android:text="@string/user_online"
-            app:layout_constraintStart_toEndOf="@+id/settings_profile_image"
-            app:layout_constraintTop_toBottomOf="@+id/settings_fullname"
             android:textColor="@color/greyLight"
             android:textSize="@dimen/text_small"
-            android:layout_marginStart="@dimen/horizontal_margin"
-            />
+            app:layout_constraintStart_toEndOf="@+id/settings_profile_image"
+            app:layout_constraintTop_toBottomOf="@+id/settings_fullname" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/settings_item_username"
+        style="@style/settings_item_large"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/settings_item_large"
-        app:layout_constraintTop_toBottomOf="@+id/settings_header"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/settings_header">
 
         <ImageView
             android:id="@+id/settings_user_login_icon"
             style="@style/settings_item_icon"
             android:src="@drawable/ic_email"
-            app:layout_constraintTop_toTopOf="@id/settings_item_username"
             app:layout_constraintStart_toStartOf="@id/settings_item_username"
-            />
+            app:layout_constraintTop_toTopOf="@id/settings_item_username" />
 
         <TextView
             android:id="@+id/settings_user_login_text"
             style="@style/settings_item_name_text"
             android:text="@string/default_user_login"
-            app:layout_constraintTop_toTopOf="@id/settings_item_username"
             app:layout_constraintStart_toEndOf="@id/settings_user_login_icon"
-            />
+            app:layout_constraintTop_toTopOf="@id/settings_item_username" />
 
         <TextView
             android:id="@+id/settings_user_login_change_text"
             style="@style/settings_item_change_text"
             android:text="@string/settings_user_login_change"
-            app:layout_constraintTop_toBottomOf="@+id/settings_user_login_text"
             app:layout_constraintStart_toEndOf="@id/settings_user_login_icon"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/settings_user_login_text" />
 
         <View
             style="@style/settings_item_divider"
-            app:layout_constraintTop_toBottomOf="@+id/settings_user_login_change_text"
-            app:layout_constraintStart_toStartOf="@+id/settings_user_login_change_text"
             app:layout_constraintBottom_toBottomOf="@+id/settings_item_username"
             app:layout_constraintEnd_toEndOf="@+id/settings_item_username"
-            />
+            app:layout_constraintStart_toStartOf="@+id/settings_user_login_change_text"
+            app:layout_constraintTop_toBottomOf="@+id/settings_user_login_change_text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/settings_item_user_phone"
+        style="@style/settings_item_large"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/settings_item_large"
-        app:layout_constraintTop_toBottomOf="@+id/settings_item_username"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/settings_item_username">
 
         <ImageView
             android:id="@+id/settings_user_phone_icon"
             style="@style/settings_item_icon"
             android:src="@drawable/ic_phone"
-            app:layout_constraintTop_toTopOf="@id/settings_item_user_phone"
             app:layout_constraintStart_toStartOf="@id/settings_item_user_phone"
-            />
+            app:layout_constraintTop_toTopOf="@id/settings_item_user_phone" />
 
         <TextView
             android:id="@+id/settings_user_phone_text"
             style="@style/settings_item_name_text"
             android:text="@string/default_user_phone"
-            app:layout_constraintTop_toTopOf="@id/settings_item_user_phone"
             app:layout_constraintStart_toEndOf="@id/settings_user_phone_icon"
-            />
+            app:layout_constraintTop_toTopOf="@id/settings_item_user_phone" />
 
         <TextView
             android:id="@+id/settings_user_phone_change_text"
             style="@style/settings_item_change_text"
             android:text="@string/settings_user_phone_change_text"
-            app:layout_constraintTop_toBottomOf="@+id/settings_user_phone_text"
             app:layout_constraintStart_toEndOf="@id/settings_user_phone_icon"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/settings_user_phone_text" />
 
         <View
             style="@style/settings_item_divider"
-            app:layout_constraintTop_toBottomOf="@+id/settings_user_phone_change_text"
-            app:layout_constraintStart_toStartOf="@+id/settings_user_phone_change_text"
             app:layout_constraintBottom_toBottomOf="@+id/settings_item_user_phone"
             app:layout_constraintEnd_toEndOf="@+id/settings_item_user_phone"
-            />
+            app:layout_constraintStart_toStartOf="@+id/settings_user_phone_change_text"
+            app:layout_constraintTop_toBottomOf="@+id/settings_user_phone_change_text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/settings_item_user_bio"
+        style="@style/settings_item_large"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/settings_item_large"
-        app:layout_constraintTop_toBottomOf="@+id/settings_item_user_phone"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/settings_item_user_phone">
 
         <ImageView
             android:id="@+id/settings_user_bio_icon"
             style="@style/settings_item_icon"
             android:src="@drawable/ic_bio"
-            app:layout_constraintTop_toTopOf="@id/settings_item_user_bio"
             app:layout_constraintStart_toStartOf="@id/settings_item_user_bio"
-            />
+            app:layout_constraintTop_toTopOf="@id/settings_item_user_bio" />
 
         <TextView
             android:id="@+id/settings_user_bio_text"
             style="@style/settings_item_name_text"
             android:text="@string/settings_user_bio_text"
-            app:layout_constraintTop_toTopOf="@id/settings_item_user_bio"
             app:layout_constraintStart_toEndOf="@id/settings_user_bio_icon"
-            />
+            app:layout_constraintTop_toTopOf="@id/settings_item_user_bio" />
 
         <TextView
             android:id="@+id/settings_user_bio_change_text"
             style="@style/settings_item_change_text"
             android:text="@string/settings_user_bio_change_text"
-            app:layout_constraintTop_toBottomOf="@+id/settings_user_bio_text"
             app:layout_constraintStart_toEndOf="@id/settings_user_bio_icon"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/settings_user_bio_text" />
 
         <View
             style="@style/settings_item_divider"
-            app:layout_constraintTop_toBottomOf="@+id/settings_user_bio_change_text"
-            app:layout_constraintStart_toStartOf="@+id/settings_user_bio_change_text"
             app:layout_constraintBottom_toBottomOf="@+id/settings_item_user_bio"
             app:layout_constraintEnd_toEndOf="@+id/settings_item_user_bio"
-            />
+            app:layout_constraintStart_toStartOf="@+id/settings_user_bio_change_text"
+            app:layout_constraintTop_toBottomOf="@+id/settings_user_bio_change_text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -191,49 +176,56 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/vertical_small_margin"
-        app:layout_constraintTop_toBottomOf="@+id/settings_item_user_bio"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settings_item_user_bio" />
 
     <include
         android:id="@+id/settings_item_data"
         layout="@layout/settings_item_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/settings_item_notify"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settings_item_notify" />
 
     <include
         android:id="@+id/settings_item_privacy"
         layout="@layout/settings_item_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/settings_item_data"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settings_item_data" />
 
     <include
         android:id="@+id/settings_item_themes"
         layout="@layout/settings_item_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/settings_item_privacy"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settings_item_privacy" />
 
     <include
         android:id="@+id/settings_item_view_example"
-        android:layout_height="wrap_content"
-        android:layout_width="0dp"
         layout="@layout/settings_item_view"
-        app:layout_constraintTop_toBottomOf="@id/settings_item_themes"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settings_item_themes" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/settings_profile_image_change_btn"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginEnd="@dimen/horizontal_margin"
+        android:src="@drawable/ic_camera"
+        app:civ_circle_background_color="@color/white"
+        app:civ_border_color="@color/grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settings_header"
+        app:layout_constraintBottom_toBottomOf="@id/settings_header"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

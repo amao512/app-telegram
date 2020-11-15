@@ -6,7 +6,7 @@ import com.aslnstbk.telegram.utils.*
 
 class ChangeNameFragment : BaseChangeFragment(R.layout.fragment_change_name) {
 
-    private var nameEditText: EditText? = null
+    private lateinit var nameEditText: EditText
 
     override fun onResume() {
         super.onResume()
@@ -14,23 +14,23 @@ class ChangeNameFragment : BaseChangeFragment(R.layout.fragment_change_name) {
     }
 
     private fun initViews() {
-        nameEditText = activity?.findViewById(R.id.fragment_settings_change_name)
+        nameEditText = APP_ACTIVITY.findViewById(R.id.fragment_settings_change_name)
 
         if(USER.fullname.isNotEmpty()){
-            nameEditText?.setText(USER.fullname)
+            nameEditText.setText(USER.fullname)
         }
     }
 
     override fun change() {
         super.change()
 
-        val fullName = nameEditText?.text.toString()
+        val fullName = nameEditText.text.toString()
 
         if (fullName.isEmpty()) {
             showToast("Name is empty!")
         } else {
             REF_DATABASE_ROOT.child(NODE_USERS)
-                    .child(UID)
+                    .child(CURRENT_UID)
                     .child(CHILD_FULLNAME)
                     .setValue(fullName)
                     .addOnCompleteListener {

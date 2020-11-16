@@ -11,7 +11,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.aslnstbk.telegram.R
 import com.aslnstbk.telegram.activities.RegisterActivity
 import com.aslnstbk.telegram.utils.*
-import com.squareup.picasso.Picasso
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import de.hdodenhof.circleimageview.CircleImageView
@@ -24,14 +23,15 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
     private lateinit var bioTextView: TextView
     private lateinit var changeProfilePhoto: ImageView
     private lateinit var profileImage: CircleImageView
-
     private lateinit var usernameItem: ConstraintLayout
     private lateinit var bioItem: ConstraintLayout
 
     override fun onStart() {
         super.onStart()
-        setSettingsItemViews()
+
         initFirebase()
+        setSettingsItemViews()
+        initFields()
     }
 
     override fun onResume() {
@@ -66,25 +66,51 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
             val uri = CropImage.getActivityResult(data).uri
             val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE).child(CURRENT_UID)
 
-            path.putFile(uri).addOnCompleteListener {
-                if(it.isSuccessful){
-                    path.downloadUrl.addOnCompleteListener {task1 ->
-                        if(task1.isSuccessful){
-                            val photoUrl = task1.result.toString()
-
-                            REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_PHOTO_URL)
-                                .setValue(photoUrl).addOnCompleteListener { task2 ->
-                                    if(task2.isSuccessful){
-                                        profileImage.downloadPhoto(photoUrl)
-                                        showToast("Photo uploaded")
-                                        USER.photoUrl = photoUrl
-                                    }
-                                }
-                        }
+            putImageToStorage(uri, path){
+                getUrlFromStorage(path){
+                    putUrlToDatabase(it){
+                        profileImage.downloadPhoto(it)
+                        showToast("Photo uploaded")
+                        USER.photoUrl = it
                     }
                 }
             }
         }
+    }
+
+    private fun initFields() {
+        fullNameTextView = APP_ACTIVITY.findViewById(R.id.settings_fullname)
+        usernameTextView = APP_ACTIVITY.findViewById(R.id.settings_user_login_text)
+        phoneNumberTextView = APP_ACTIVITY.findViewById(R.id.settings_user_phone_text)
+        bioTextView = APP_ACTIVITY.findViewById(R.id.settings_user_bio_text)
+        changeProfilePhoto = APP_ACTIVITY.findViewById(R.id.settings_profile_image_change_btn)
+        profileImage = APP_ACTIVITY.findViewById(R.id.settings_profile_image)
+        usernameItem = APP_ACTIVITY.findViewById(R.id.settings_item_username)
+        bioItem = APP_ACTIVITY.findViewById(R.id.settings_item_user_bio)
+
+        fillFields()
+
+        usernameItem.setOnClickListener { replaceFragment(ChangeUsernameFragment()) }
+        bioItem.setOnClickListener { replaceFragment(ChangeBioFragment()) }
+        changeProfilePhoto.setOnClickListener { changeUserPhoto() }
+    }
+
+    private fun fillFields(){
+        when {
+            USER.fullname.isNotEmpty() -> fullNameTextView.text = USER.fullname
+            USER.username.isNotEmpty() -> usernameTextView.text = USER.username
+            USER.phone.isNotEmpty() -> phoneNumberTextView.text = USER.phone
+            USER.bio.isNotEmpty() -> bioTextView.text = USER.bio
+            USER.photoUrl.isNotEmpty() -> profileImage.downloadPhoto(USER.photoUrl)
+        }
+    }
+
+    private fun changeUserPhoto() {
+        CropImage.activity()
+            .setAspectRatio(1, 1)
+            .setRequestedSize(600, 600)
+            .setCropShape(CropImageView.CropShape.OVAL)
+            .start(APP_ACTIVITY, this)
     }
 
     private fun setSettingsItemViews(){
@@ -95,52 +121,11 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
     }
 
     private fun initViews(layoutId: Int, iconRes: Int, title: Int){
-        fullNameTextView = APP_ACTIVITY.findViewById(R.id.settings_fullname)
-        usernameTextView = APP_ACTIVITY.findViewById(R.id.settings_user_login_text)
-        phoneNumberTextView = APP_ACTIVITY.findViewById(R.id.settings_user_phone_text)
-        bioTextView = APP_ACTIVITY.findViewById(R.id.settings_user_bio_text)
-        changeProfilePhoto = APP_ACTIVITY.findViewById(R.id.settings_profile_image_change_btn)
-        profileImage = APP_ACTIVITY.findViewById(R.id.settings_profile_image)
-
-        usernameItem = APP_ACTIVITY.findViewById(R.id.settings_item_username)
-        bioItem = APP_ACTIVITY.findViewById(R.id.settings_item_user_bio)
-
-        fillFields()
-
         val item: ConstraintLayout? = activity?.findViewById(layoutId)
         val icon: ImageView? = item?.findViewById(R.id.settings_item_icon)
         val text: TextView? = item?.findViewById(R.id.settings_item_text)
 
         icon?.setImageResource(iconRes)
         text?.text = getString(title)
-
-        usernameItem.setOnClickListener {
-            replaceFragment(ChangeUsernameFragment())
-        }
-
-        bioItem.setOnClickListener {
-            replaceFragment(ChangeBioFragment())
-        }
-
-        changeProfilePhoto.setOnClickListener {
-            changeUserPhoto()
-        }
-    }
-
-    private fun fillFields(){
-        when {
-            USER.fullname.isNotEmpty() -> fullNameTextView.text = USER.fullname
-            USER.username.isNotEmpty() -> usernameTextView.text = USER.username
-            USER.phone.isNotEmpty() -> phoneNumberTextView.text = USER.phone
-            USER.bio.isNotEmpty() -> bioTextView.text = USER.bio
-        }
-    }
-
-    private fun changeUserPhoto() {
-        CropImage.activity()
-            .setAspectRatio(1, 1)
-            .setRequestedSize(600, 600)
-            .setCropShape(CropImageView.CropShape.OVAL)
-            .start(APP_ACTIVITY, this)
     }
 }

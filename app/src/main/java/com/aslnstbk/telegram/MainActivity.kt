@@ -1,6 +1,5 @@
 package com.aslnstbk.telegram
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.aslnstbk.telegram.activities.RegisterActivity
@@ -9,7 +8,6 @@ import com.aslnstbk.telegram.models.User
 import com.aslnstbk.telegram.ui.fragments.ChatsFragment
 import com.aslnstbk.telegram.ui.objects.AppDrawer
 import com.aslnstbk.telegram.utils.*
-import com.theartofdev.edmodo.cropper.CropImage
 
 class MainActivity : AppCompatActivity() {
 

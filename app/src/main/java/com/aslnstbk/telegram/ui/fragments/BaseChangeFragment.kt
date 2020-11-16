@@ -13,10 +13,6 @@ open class BaseChangeFragment(layout: Int) : BaseFragment(layout) {
         hideKeyboard()
     }
 
-    override fun onStop() {
-        super.onStop()
-    }
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         activity?.menuInflater?.inflate(R.menu.settings_change_menu, menu)

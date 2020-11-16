@@ -4,17 +4,17 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import com.aslnstbk.telegram.R
-import com.aslnstbk.telegram.utils.APP_ACTIVITY
+import com.aslnstbk.telegram.utils.hideKeyboard
 
 open class BaseChangeFragment(layout: Int) : BaseFragment(layout) {
     override fun onResume() {
         super.onResume()
         setHasOptionsMenu(true)
+        hideKeyboard()
     }
 
     override fun onStop() {
         super.onStop()
-        APP_ACTIVITY.hideKeyboard()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

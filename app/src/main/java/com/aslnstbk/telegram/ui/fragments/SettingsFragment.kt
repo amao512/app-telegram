@@ -1,16 +1,20 @@
 package com.aslnstbk.telegram.ui.fragments
 
+import android.content.Intent
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.aslnstbk.telegram.R
 import com.aslnstbk.telegram.activities.RegisterActivity
 import com.aslnstbk.telegram.utils.*
+import com.squareup.picasso.Picasso
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
+import de.hdodenhof.circleimageview.CircleImageView
 
 class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
 
@@ -19,6 +23,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
     private lateinit var phoneNumberTextView: TextView
     private lateinit var bioTextView: TextView
     private lateinit var changeProfilePhoto: ImageView
+    private lateinit var profileImage: CircleImageView
 
     private lateinit var usernameItem: ConstraintLayout
     private lateinit var bioItem: ConstraintLayout
@@ -52,6 +57,36 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
+            && resultCode == AppCompatActivity.RESULT_OK && data != null){
+
+            val uri = CropImage.getActivityResult(data).uri
+            val path = REF_STORAGE_ROOT.child(FOLDER_PROFILE_IMAGE).child(CURRENT_UID)
+
+            path.putFile(uri).addOnCompleteListener {
+                if(it.isSuccessful){
+                    path.downloadUrl.addOnCompleteListener {task1 ->
+                        if(task1.isSuccessful){
+                            val photoUrl = task1.result.toString()
+
+                            REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_PHOTO_URL)
+                                .setValue(photoUrl).addOnCompleteListener { task2 ->
+                                    if(task2.isSuccessful){
+                                        profileImage.downloadPhoto(photoUrl)
+                                        showToast("Photo uploaded")
+                                        USER.photoUrl = photoUrl
+                                    }
+                                }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     private fun setSettingsItemViews(){
         initViews(R.id.settings_item_notify, R.drawable.ic_notify, R.string.settings_notify_text)
         initViews(R.id.settings_item_data, R.drawable.ic_data_usage, R.string.settings_data_text)
@@ -65,6 +100,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         phoneNumberTextView = APP_ACTIVITY.findViewById(R.id.settings_user_phone_text)
         bioTextView = APP_ACTIVITY.findViewById(R.id.settings_user_bio_text)
         changeProfilePhoto = APP_ACTIVITY.findViewById(R.id.settings_profile_image_change_btn)
+        profileImage = APP_ACTIVITY.findViewById(R.id.settings_profile_image)
 
         usernameItem = APP_ACTIVITY.findViewById(R.id.settings_item_username)
         bioItem = APP_ACTIVITY.findViewById(R.id.settings_item_user_bio)
@@ -105,6 +141,6 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
             .setAspectRatio(1, 1)
             .setRequestedSize(600, 600)
             .setCropShape(CropImageView.CropShape.OVAL)
-            .start(APP_ACTIVITY)
+            .start(APP_ACTIVITY, this)
     }
 }

@@ -33,6 +33,18 @@ fun initFirebase(){
     USER = User()
 }
 
+inline fun initUser(crossinline function: () -> Unit) {
+    REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID)
+        .addListenerForSingleValueEvent(AppValueEventListener {
+            USER = it.getValue(User::class.java) ?: User()
+            if(USER.username.isEmpty()){
+                USER.username = CURRENT_UID
+            }
+            function()
+        })
+}
+
+
 inline fun putUrlToDatabase(url: String, crossinline function: () -> Unit) {
     REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_PHOTO_URL)
         .setValue(url)

@@ -3,12 +3,12 @@ package com.aslnstbk.telegram.utils
 import android.content.Context
 import android.content.Intent
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.aslnstbk.telegram.R
 import com.squareup.picasso.Picasso
-import de.hdodenhof.circleimageview.CircleImageView
 
 fun AppCompatActivity.replaceActivity(activity: AppCompatActivity){
     startActivity(Intent(this, activity::class.java))
@@ -43,9 +43,10 @@ fun hideKeyboard(){
     imm.hideSoftInputFromWindow(APP_ACTIVITY.window.decorView.windowToken, 0)
 }
 
-fun CircleImageView.downloadPhoto(url: String){
+fun ImageView.downloadPhoto(url: String){
     Picasso.get()
         .load(url)
+        .fit()
         .placeholder(R.drawable.ic_default_user_photo)
         .into(this)
 }

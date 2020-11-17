@@ -37,6 +37,7 @@ class ChangeNameFragment : BaseChangeFragment(R.layout.fragment_change_name) {
                         if (it.isSuccessful) {
                             showToast("Success")
                             USER.fullname = fullName
+                            APP_ACTIVITY.mAppDrawer.updateProfile()
                             fragmentManager?.popBackStack()
                         } else {
                             showToast(it.exception?.message.toString())

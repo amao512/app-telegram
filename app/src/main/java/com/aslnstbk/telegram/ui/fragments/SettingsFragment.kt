@@ -26,17 +26,11 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
     private lateinit var usernameItem: ConstraintLayout
     private lateinit var bioItem: ConstraintLayout
 
-    override fun onStart() {
-        super.onStart()
-
-        initFirebase()
-        setSettingsItemViews()
-        initFields()
-    }
-
     override fun onResume() {
         super.onResume()
         setHasOptionsMenu(true)
+        initView()
+        setSettingsItemViews()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -72,13 +66,15 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
                         profileImage.downloadPhoto(it)
                         showToast("Photo uploaded")
                         USER.photoUrl = it
+
+                        APP_ACTIVITY.mAppDrawer.updateProfile()
                     }
                 }
             }
         }
     }
 
-    private fun initFields() {
+    private fun initView() {
         fullNameTextView = APP_ACTIVITY.findViewById(R.id.settings_fullname)
         usernameTextView = APP_ACTIVITY.findViewById(R.id.settings_user_login_text)
         phoneNumberTextView = APP_ACTIVITY.findViewById(R.id.settings_user_phone_text)
@@ -88,21 +84,19 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         usernameItem = APP_ACTIVITY.findViewById(R.id.settings_item_username)
         bioItem = APP_ACTIVITY.findViewById(R.id.settings_item_user_bio)
 
-        fillFields()
+        initFields()
 
         usernameItem.setOnClickListener { replaceFragment(ChangeUsernameFragment()) }
         bioItem.setOnClickListener { replaceFragment(ChangeBioFragment()) }
         changeProfilePhoto.setOnClickListener { changeUserPhoto() }
     }
 
-    private fun fillFields(){
-        when {
-            USER.fullname.isNotEmpty() -> fullNameTextView.text = USER.fullname
-            USER.username.isNotEmpty() -> usernameTextView.text = USER.username
-            USER.phone.isNotEmpty() -> phoneNumberTextView.text = USER.phone
-            USER.bio.isNotEmpty() -> bioTextView.text = USER.bio
-            USER.photoUrl.isNotEmpty() -> profileImage.downloadPhoto(USER.photoUrl)
-        }
+    private fun initFields(){
+        fullNameTextView.text = USER.fullname
+        usernameTextView.text = USER.username
+        phoneNumberTextView.text = USER.phone
+        bioTextView.text = USER.bio
+        profileImage.downloadPhoto(USER.photoUrl)
     }
 
     private fun changeUserPhoto() {
@@ -121,7 +115,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
     }
 
     private fun initViews(layoutId: Int, iconRes: Int, title: Int){
-        val item: ConstraintLayout? = activity?.findViewById(layoutId)
+        val item: ConstraintLayout? = APP_ACTIVITY.findViewById(layoutId)
         val icon: ImageView? = item?.findViewById(R.id.settings_item_icon)
         val text: TextView? = item?.findViewById(R.id.settings_item_text)
 

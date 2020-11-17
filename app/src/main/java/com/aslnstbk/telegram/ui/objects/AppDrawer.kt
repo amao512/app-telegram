@@ -1,6 +1,9 @@
 package com.aslnstbk.telegram.ui.objects
 
+import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -9,6 +12,7 @@ import androidx.fragment.app.Fragment
 import com.aslnstbk.telegram.R
 import com.aslnstbk.telegram.ui.fragments.*
 import com.aslnstbk.telegram.utils.USER
+import com.aslnstbk.telegram.utils.downloadPhoto
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.Drawer
@@ -17,14 +21,18 @@ import com.mikepenz.materialdrawer.model.DividerDrawerItem
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
+import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader
+import com.mikepenz.materialdrawer.util.DrawerImageLoader
 
 class AppDrawer(val activity: AppCompatActivity, private val mToolbar: Toolbar) {
 
     private lateinit var mDrawer: Drawer
     private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var mHeader: AccountHeader
+    private lateinit var mCurrentProfile: ProfileDrawerItem
 
     fun create(){
+        initLoader()
         createHeader()
         createDrawer()
         mDrawerLayout = mDrawer.drawerLayout
@@ -49,14 +57,17 @@ class AppDrawer(val activity: AppCompatActivity, private val mToolbar: Toolbar) 
     }
 
     private fun createHeader() {
+        mCurrentProfile = ProfileDrawerItem()
+            .withName(USER.fullname)
+            .withEmail(USER.phone)
+            .withIcon(USER.photoUrl)
+            .withIdentifier(200)
+
         mHeader = AccountHeaderBuilder()
                 .withActivity(activity)
                 .withHeaderBackground(R.drawable.drawer_menu_header)
-                .addProfiles(
-                        ProfileDrawerItem()
-                            .withName(USER.fullname)
-                            .withEmail(USER.phone)
-                ).build()
+                .addProfiles(mCurrentProfile)
+                .build()
     }
 
     private fun createDrawer() {
@@ -115,5 +126,22 @@ class AppDrawer(val activity: AppCompatActivity, private val mToolbar: Toolbar) 
                 .addToBackStack(null)
                 .replace(R.id.dataContainer, Fragment)
                 .commit()
+    }
+
+    private fun initLoader(){
+        DrawerImageLoader.init(object : AbstractDrawerImageLoader(){
+            override fun set(imageView: ImageView, uri: Uri, placeholder: Drawable) {
+                imageView.downloadPhoto(uri.toString())
+            }
+        })
+    }
+
+    fun updateProfile(){
+        mCurrentProfile
+            .withName(USER.fullname)
+            .withEmail(USER.phone)
+            .withIcon(USER.photoUrl)
+
+        mHeader.updateProfile(mCurrentProfile)
     }
 }

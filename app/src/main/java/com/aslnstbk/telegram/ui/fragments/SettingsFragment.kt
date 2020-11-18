@@ -23,6 +23,8 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
     private lateinit var bioTextView: TextView
     private lateinit var changeProfilePhoto: ImageView
     private lateinit var profileImage: CircleImageView
+    private lateinit var userStatusTextView: TextView
+
     private lateinit var usernameItem: ConstraintLayout
     private lateinit var bioItem: ConstraintLayout
 
@@ -81,6 +83,8 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         bioTextView = APP_ACTIVITY.findViewById(R.id.settings_user_bio_text)
         changeProfilePhoto = APP_ACTIVITY.findViewById(R.id.settings_profile_image_change_btn)
         profileImage = APP_ACTIVITY.findViewById(R.id.settings_profile_image)
+        userStatusTextView = APP_ACTIVITY.findViewById(R.id.settings_user_online_status)
+
         usernameItem = APP_ACTIVITY.findViewById(R.id.settings_item_username)
         bioItem = APP_ACTIVITY.findViewById(R.id.settings_item_user_bio)
 
@@ -97,6 +101,7 @@ class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
         phoneNumberTextView.text = USER.phone
         bioTextView.text = USER.bio
         profileImage.downloadPhoto(USER.photoUrl)
+        userStatusTextView.text = USER.state
     }
 
     private fun changeUserPhoto() {

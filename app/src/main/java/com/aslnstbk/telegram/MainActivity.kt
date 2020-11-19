@@ -1,7 +1,9 @@
 package com.aslnstbk.telegram
 
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.aslnstbk.telegram.activities.RegisterActivity
 import com.aslnstbk.telegram.databinding.ActivityMainBinding
 import com.aslnstbk.telegram.ui.fragments.ChatsFragment
@@ -22,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         APP_ACTIVITY = this
         initFirebase()
         initUser {
+            initContacts()
             initFields()
             initFunc()
         }
@@ -35,6 +38,24 @@ class MainActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
         AppStates.update(AppStates.OFFLINE)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if(ContextCompat.checkSelfPermission(APP_ACTIVITY, READ_CONTACTS) == PackageManager.PERMISSION_GRANTED){
+            initContacts()
+        }
+    }
+
+    private fun initContacts() {
+        if(checkPermission(READ_CONTACTS)){
+            showToast("Permission access")
+        }
     }
 
     private fun initFields() {
